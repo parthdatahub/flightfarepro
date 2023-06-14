@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Fare Prediction</title>
+    <style>
+        body {
+
+            display: flex;
+            background: #0c1022;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+
+        }
+
+        form {
+            position: relative;
+            width: 1000px;
+            height: 500px;
+            background: rgba(0, 0, 0.75);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-inline: 32px;
+            overflow: hidden;
+        }
+
+        form::before {
+            content: "";
+            position: absolute;
+            height: 2000px;
+            width: 2000px;
+            background: conic-gradient(transparent, transparent, transparent, #d400d4);
+            animation: animate 4s linear infinite;
+            animation-delay: -2s;
+        }
+
+
+        form::after {
+            content: "";
+            position: absolute;
+            height: 2000px;
+            width: 2000px;
+            background: conic-gradient(transparent, transparent, transparent, #00cfff);
+            animation: animate 4s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .image {
+            position: absolute;
+            inset: 5px;
+            background-color: #0c1022;
+            z-index: 1;
+            border-radius: 16px;
+            padding: 25px;
+
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 40px;
+        }
+
+        label {
+            display: inline-block;
+            color: #fff;
+            width: 100;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 25px;
+            margin: 15px 0;
+        }
+
+        input[type=text],
+        select {
+            width: 100;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #fff;
+            box-sizing: border-box;
+            font-size: 20px;
+            background: transparent;
+            color: #d400d4;
+        }
+
+        select:focus {
+            background-color: rgb(194, 226, 245);
+        }
+
+        input[type=submit] {
+            width: 100%;
+            height: 50px;
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            background-color: #00cfff;
+            color: black;
+            font-size: large;
+            font-weight: 600;
+            padding: 14px 20px;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #d400d4;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <h1> Flight Fare Prediction </h1>
+
+    <form method="GET" action="/predict_price">
+        <div class="image">
+
+
+            <label for="airline">Airline:</label>
+            <select type="airline" name="airline" id="airline">
+                <option value="AirAsia">AirAsia</option>
+                <option value="Air_India">Air_India</option>
+                <option value="GO_FIRST">GO_FIRST</option>
+                <option value="Indigo">Indigo</option>
+                <option value="SpiceJet">SpiceJet</option>
+                <option value="Vistara">Vistara</option>
+            </select>
+
+            <label for="source_city">Source city:</label>
+            <select type="source_city" name="source_city" id="source_city">
+                <option value="Chennai">Chennai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+            </select>
+
+            <label for="departure_time">Departure Time:</label>
+            <select type="departure_time" name="departure_time" id="departure_time">
+                <option value="Afternoon">Afternoon</option>
+                <option value="Early_Morning">Early_Morning</option>
+                <option value="Evening">Evening</option>
+                <option value="Late_Night">Late_Night</option>
+                <option value="Morning">Morning</option>
+                <option value="Night">Night</option>
+            </select>
+
+            <br>
+            <br>
+
+            <label for="stops">Stops:</label>
+            <select type="stops" name="stops" id="stops">
+                <option value="one">One</option>
+                <option value="two_or_more">Two or More</option>
+                <option value="zero">Zero</option>
+            </select>
+
+
+
+            <label for="arrival_time">Arrival Time:</label>
+            <select type="arrival_time" name="arrival_time" id="arrival_time">
+                <option value="Afternoon">Afternoon</option>
+                <option value="Early_Morning">Early Morning</option>
+                <option value="Evening">Evening</option>
+                <option value="Late_Night">Late Night</option>
+                <option value="Morning">Morning</option>
+                <option value="Night">Night</option>
+            </select>
+
+
+            <label for="destination_city">Destination City:</label>
+            <select type="destination_city" name="destination_city" id="destination_city">
+                <option value="Bangalore">Bangalore</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Mumbai">Mumbai</option>
+            </select>
+
+            <br>
+            <br>
+
+            <label for="class_">Class :</label>
+            <select type="class_" name="class_" id="class_">
+                <option value="Business">Business</option>
+                <option value="Economy">Economy</option>>
+            </select>
+
+
+            <label for="duration">Duration:</label>
+            <input type="text" name="duration" id="duration" placeholder="eg (2.5 Hrs)">
+
+            <br>
+            <br>
+
+            <label for="days_left">Days Left:</label>
+            <input type="text" name="days_left" id="days_left" placeholder="eg (10 Days)">
+
+            <br>
+            <br>
+
+            <input type="submit" value="SUBMIT">
+        </div>
+    </form>
+
+    </div>
+    </form>
+    <br>
+    <p>The Total Price of your Flight Ticket is: <b>{{prediction}} INR</b> Only. </p>
+
+</body>
+
+</html>
